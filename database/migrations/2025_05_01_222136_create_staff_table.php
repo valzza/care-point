@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('surname');
             $table->string('email')->unique();
-            $table->string('phone',20);
             $table->string('phone', 20);
             $table->string('role');
             $table->time('shift_start')->nullable();
