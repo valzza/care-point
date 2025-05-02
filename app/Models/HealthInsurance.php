@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Health_insurance extends Model
 {
-    //
+    public function patients()
+    {
+        return $this->belongsTo(Patient::class);
+    }
 }

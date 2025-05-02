@@ -3,13 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use PHPUnit\Framework\TestSize\TestSize;
 
 class History extends Model
 {
-    public function medical_card(){
+    public function medical_card()
+    {
         return $this->belongsTo(MedicalCard::class);
     }
-    public function test(){
-        return $this->hasMany(Test::class);
+    public function tests()
+    {
+        return $this->hasMany(Tests::class);
     }
 }
