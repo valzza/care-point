@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Department_Staff extends Model
+class DepartmentStaff extends Model
 {
     //
 }
