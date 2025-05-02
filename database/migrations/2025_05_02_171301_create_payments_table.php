@@ -20,8 +20,6 @@ return new class extends Migration
             $table->enum('status', ['Pending', 'Completed', 'Received']);
             $table->timestamps();
 
-
-            $table->foreign('appointment_id')->references('id')->on('appointments')->onDelete('cascade');
         });
     }
 

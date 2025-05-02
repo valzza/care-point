@@ -21,8 +21,6 @@ return new class extends Migration
             $table->date('usage_instructions');
             $table->timestamps();
 
-            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
-            $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade'); //
         });
         
     }

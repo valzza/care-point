@@ -22,10 +22,6 @@ return new class extends Migration
             $table->text('recommendations');
             $table->timestamps();
 
-            //per foreign key
-            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
-            $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
-            $table->foreign('report_id')->references('id')->on('reports')->onDelete('cascade');
         });
     }
 

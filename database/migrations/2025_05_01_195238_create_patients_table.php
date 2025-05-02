@@ -25,8 +25,6 @@ return new class extends Migration
             $table->string('emergency_contact_number', 20)->nullable();
             $table->timestamps();
 
-            //per foreign key
-            $table->foreign('health_insurance_id')->references('id')->on('health_insurance')->onDelete('cascade');
         });
     }
 

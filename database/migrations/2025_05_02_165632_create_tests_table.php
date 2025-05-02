@@ -20,7 +20,6 @@ return new class extends Migration
             $table->date('date');
             $table->timestamps();
 
-            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
         });
     }
 

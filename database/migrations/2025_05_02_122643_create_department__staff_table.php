@@ -17,9 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger('staff_id'); //fk
             $table->timestamps();
 
-            //per foreign key
-            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
-            $table->foreign('staff_id')->references('id')->on('staff')->onDelete('cascade');
         });
     }
 
