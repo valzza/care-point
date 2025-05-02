@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('problem');
             $table->string('treatment');
             $table->string('tips');
-            $table->datetime('next_visit');
+            $table->datetime('next_visit')->nullable();
             $table->unsignedBigInteger('doctor_id');
             $table->unsignedBigInteger('medical_card_id');
             $table->timestamps();
