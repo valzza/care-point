@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('patient_id'); // fk
             $table->enum('test_type', ['Hemogrami (CBC)', 'EKG', 'Shtatezani', 'Glikemia', 'Other']);
-            $table->string('Other')->nullable();
+            $table->string('other')->nullable();
             $table->string('result')->nullable();
             $table->date('date');
             $table->timestamps();
