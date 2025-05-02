@@ -15,4 +15,7 @@ class Staff extends Model
     public function nurses(){
         return $this->belongsTo(Nurse::class);
     }
+    public function departments(){
+        return $this->belongsToMany(Department::class,'department_staff_id','staff_id','department_id');
+    }
 }
