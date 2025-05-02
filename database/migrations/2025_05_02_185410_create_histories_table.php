@@ -21,6 +21,8 @@ return new class extends Migration
             $table->text('pregnancies')->nullable();
             $table->timestamps();
 
+            $table->foreign('medical_card_id')->references('id')->on('medical_cards')->onDelete('cascade');
+        $table->foreign('test_id')->references('id')->on('tests')->onDelete('cascade');
         });
         
     }
