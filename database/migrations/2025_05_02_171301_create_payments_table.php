@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('billings', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            //$table->unsignedBigInteger('appointment_id'); //fk
+            $table->unsignedBigInteger('appointment_id'); //fk
             $table->decimal('amount');
             $table->date('date');
-            $table->string('method');
-            $table->string('status');
+            $table->enum('method', ['Paypal', 'Credit Card', 'Cash']);
+            $table->enum('status', ['Pending', 'Completed', 'Received']);
             $table->timestamps();
 
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('billings');
+        Schema::dropIfExists('payments');
     }
 };
