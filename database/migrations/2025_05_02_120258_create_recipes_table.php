@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('doctor_id'); //fk
             $table->string('medicaments');
             $table->date('date');
+            $table->string('alergies');
             $table->date('usage_instructions');
             $table->timestamps();
 
