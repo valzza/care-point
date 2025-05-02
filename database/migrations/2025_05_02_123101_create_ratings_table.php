@@ -13,16 +13,15 @@ return new class extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            // $table->unsignedBigInteger('patient_id'); //fk
-           // $table->unsignedBigInteger('doctor_id'); //fk
+            $table->unsignedBigInteger('patient_id'); //fk
+            $table->unsignedBigInteger('doctor_id'); //fk
             $table->unsignedTinyInteger('rate');
             $table->string('comment');
             $table->date('date');
             $table->timestamps();
-
-
-            //   $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
-         // $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade'); //
+            
+            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
+            $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade'); //
         });
     }
 
