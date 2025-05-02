@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('surname');
             $table->date('birth_date');
             $table->enum('gender', ['Mashkull', 'Femer']); 
+            $table->enum('blood_type', ['A+', 'A-', 'B+', 'B-','AB+','AB-', '0+', '0-']); 
             $table->string('phone', 20);
             $table->string('email');
             $table->string('personal_id')->unique();
@@ -25,7 +26,7 @@ return new class extends Migration
             $table->timestamps();
 
             //per foreign key
-            // $table->foreign('health_insurance_id')->references('id')->on('health_insurance')->onDelete('cascade');
+            $table->foreign('health_insurance_id')->references('id')->on('health_insurance')->onDelete('cascade');
         });
     }
 
