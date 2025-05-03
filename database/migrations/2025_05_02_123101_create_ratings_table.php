@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('patient_id'); //fk
             $table->unsignedBigInteger('doctor_id'); //fk
             $table->unsignedTinyInteger('rate');
-            $table->string('comment');
+            $table->text('comment');
             $table->date('date');
             $table->timestamps();
             

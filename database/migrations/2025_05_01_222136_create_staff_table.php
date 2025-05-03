@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('surname');
             $table->string('email')->unique();
             $table->string('phone', 20);
-            $table->string('role');
+            $table->enum('role', ['Admin', 'Doctor', 'Nurse']);
             $table->time('shift_start')->nullable();
             $table->time('shift_end')->nullable();
             $table->string('shift_type')->nullable();
