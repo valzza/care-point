@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Doctor extends Model
 {
+    protected $fillable = [
+        'staff_id',
+        'specialization',
+    ];
     public function staff(){
         return $this->belongsTo(Staff::class);
     }

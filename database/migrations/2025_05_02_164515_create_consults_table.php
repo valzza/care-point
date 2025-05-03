@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('date');
             $table->string('problem');
             $table->string('treatment');
-            $table->string('tips')->nullable();
+            $table->string('tips');
             $table->datetime('next_visit')->nullable();
             $table->timestamps();
 

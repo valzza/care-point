@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Staff extends Model
 {
+    protected $fillable =[
+        'name',
+        'surname',
+        'email',
+        'phone',
+        'shift_start',
+        'shift_end',
+        'shift_type',
+    ];
     public function doctors(){
         return $this->belongsTo(Doctor::class);
     }
