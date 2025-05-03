@@ -6,6 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Appointment extends Model
 {
+
+    protected $fillable = [
+        'patient_id',
+        'doctor_id',
+        'date',
+        'time',
+        'appointment_type',
+        'status',
+    ];
+
     public function doctors(){
         return $this->belongsTo(Doctor::class);
     }

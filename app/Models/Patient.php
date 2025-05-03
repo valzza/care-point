@@ -6,6 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Patient extends Model
 {
+
+    protected $fillable = [
+        'health_insurance_id',
+        'name',
+        'surname',
+        'birth_date',
+        'gender',
+        'blood_type',
+        'phone',
+        'email',
+        'personal_id',
+        'emergency-contact_number',
+    ];
+
     public function payments(){
         return $this->hasMany(Payment::class);
     }

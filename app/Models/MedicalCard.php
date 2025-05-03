@@ -6,6 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class MedicalCard extends Model
 {
+
+    protected $fillable = [
+        'patient_id',
+        'doctor_id',
+        'report_id',
+        'opening_date',
+        'closing_date',
+        'closing_reason',
+        'reccomendations',
+    ];
+
     public function patients(){
         return $this->belongsTo(Patient::class);
     }
