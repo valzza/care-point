@@ -13,10 +13,10 @@ class Patient extends Model
         return $this->hasMany(Appointment::class);
     }
     public function medical_cards(){
-        return $this->hasMany(MedicalCard::class);
+        return $this->belongsTo(MedicalCard::class);
     }
     public function health_insurances(){
-        return $this->hasMany(HealthInsurance::class);
+        return $this->belongsTo(HealthInsurance::class);
     }
     public function ratings(){
         return $this->hasMany(Rating::class);

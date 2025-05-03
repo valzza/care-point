@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestSize\TestSize;
 
 class History extends Model
 {
-    public function medical_card()
+    public function medical_cards()
     {
         return $this->belongsTo(MedicalCard::class);
     }

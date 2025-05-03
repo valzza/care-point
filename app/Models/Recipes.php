@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Recipes extends Model
 {
-    public function patient(){
+    public function patients(){
         return $this->belongsTo(Patient::class);
     }
-    public function doctor(){
+    public function doctors(){
         return $this->belongsTo(Doctor::class);
     }
 }

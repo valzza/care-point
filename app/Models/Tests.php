@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tests extends Model
 {
-    public function history()
+    public function histories()
     {
         return $this->belongsTo(History::class);
     }
