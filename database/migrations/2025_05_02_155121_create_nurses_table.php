@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('nurses', function (Blueprint $table) {
             $table->id();
+            $table->string('degree');
+            $table->unsignedBigInteger('staff_id');//fk
             $table->timestamps();
         });
     }
