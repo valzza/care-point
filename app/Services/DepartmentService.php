@@ -6,10 +6,10 @@ use App\Repositories\DepartmentRepository;
 
 class DepartmentService extends BaseService
 {
-    protected $DepartmentRepository;
-    public function __construct(DepartmentRepository $DepartmentRepository)
+    protected $departmentRepository;
+    public function __construct(DepartmentRepository $departmentRepository)
     {
-        parent::__construct($DepartmentRepository);
-        $this->DepartmentRepository = $DepartmentRepository;
+        parent::__construct($departmentRepository);
+        $this->departmentRepository = $departmentRepository;
     }
 }
