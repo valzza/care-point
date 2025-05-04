@@ -78,7 +78,7 @@ class RecipesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Recipes $recipes)
+    public function update(Request $request, $id)
     {
         try {
             $recipe = $this->recipeService->find($id);
