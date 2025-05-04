@@ -55,7 +55,7 @@ class RatingController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Rating $rating)
+    public function show($id)
     {
         try {
             $rating = $this->ratingService->find($id);
@@ -79,7 +79,7 @@ class RatingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Rating $rating)
+    public function update(Request $request, $id)
     {
         try {
             $rating = $this->ratingService->find($id);
@@ -96,7 +96,7 @@ class RatingController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Rating $rating)
+    public function destroy($id)
     {
         try {
             $rating = $this->ratingService->find($id);

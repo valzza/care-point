@@ -54,7 +54,7 @@ class RecipesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Recipes $recipes)
+    public function show($id)
     {
         try {
             $recipe = $this->recipeService->find($id);

@@ -55,7 +55,7 @@ class PaymentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Payment $payment)
+    public function show($id)
     {
         try {
             $payment = $this->paymentService->find($id);
@@ -79,7 +79,7 @@ class PaymentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Payment $payment)
+    public function update(Request $request, $id)
     {
         try {
             $payment = $this->paymentService->find($id);
@@ -96,7 +96,7 @@ class PaymentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Payment $payment)
+    public function destroy($id)
     {
         try {
             $payment = $this->paymentService->find($id);
