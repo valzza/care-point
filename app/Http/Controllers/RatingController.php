@@ -2,17 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\EmptyResource;
+use App\Http\Resources\RatingCollection;
+use App\Http\Resources\RatingResource;
 use App\Models\Rating;
+use App\Services\RatingService;
+use Exception;
 use Illuminate\Http\Request;
 
 class RatingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    protected RatingService $ratingService;
+    public function __construct(RatingService $ratingService)
+    {
+        $this->ratingService = $ratingService;
+    }
+
     public function index()
     {
-        //
+        try {
+            $rating = $this->ratingService->all();
+            if ($rating->isEmpty()) {
+                return $this->okNoRecords();
+            }
+            return $this->okWithCollection(new RatingCollection($rating));
+        } catch (Exception $e) {
+            return $this->respondError('Something went wrong!' . $e);
+        }
     }
 
     /**
@@ -28,7 +44,12 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $rating = $this->ratingService->save($request);
+            return $this->created(new RatingResource($rating));
+        } catch (Exception $e) {
+            return $this->respondError('Something went wrong!' . $e);
+        }
     }
 
     /**
@@ -36,7 +57,15 @@ class RatingController extends Controller
      */
     public function show(Rating $rating)
     {
-        //
+        try {
+            $rating = $this->ratingService->find($id);
+            if ($rating) {
+                return $this->okWithResource(new RatingResource($rating));
+            }
+            return $this->notFound();
+        } catch (Exception $e) {
+            return $this->respondError('Something went wrong!' . $e);
+        }
     }
 
     /**
@@ -52,7 +81,16 @@ class RatingController extends Controller
      */
     public function update(Request $request, Rating $rating)
     {
-        //
+        try {
+            $rating = $this->ratingService->find($id);
+            if ($rating) {
+                $rating = $this->ratingService->update($request, $id);
+                return $this->okWithResource(new RatingResource($rating));
+            }
+            return $this->notFound();
+        } catch (Exception $e) {
+            return $this->respondError('Something went wrong!' . $e);
+        }
     }
 
     /**
@@ -60,6 +98,14 @@ class RatingController extends Controller
      */
     public function destroy(Rating $rating)
     {
-        //
+        try {
+            $rating = $this->ratingService->find($id);
+            if ($rating) {
+                $this->ratingService->delete($id);
+                return $this->deleted(new EmptyResource($rating));
+            }
+        } catch (Exception $e) {
+            return $this->respondError('Something went wrong!' . $e);
+        }
     }
 }
