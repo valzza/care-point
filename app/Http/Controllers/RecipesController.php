@@ -95,7 +95,7 @@ class RecipesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Recipes $recipes)
+    public function destroy($id)
     {
         try {
             $recipe = $this->recipeService->find($id);
