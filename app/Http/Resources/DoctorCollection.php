@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Resource\AbstractJsonCollection;
+use App\Http\Resources\AbstractJsonCollection;
 
-class DoctorCollection extends AbstractJs
+class DoctorCollection extends AbstractJsonCollection
 {
     public function getModelName()
     {
