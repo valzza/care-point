@@ -6,7 +6,7 @@ namespace App\Http\Resources;
 use App\Http\Resources\AbstractJsonResource;
 use Illuminate\Http\Request;
 
-class AppointmentResource extends  AbstractJsonResource
+class DepartmentResource extends  AbstractJsonResource
 {
     public function getModelName()
     {
