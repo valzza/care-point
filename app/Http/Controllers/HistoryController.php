@@ -54,7 +54,7 @@ class HistoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(History $history)
+    public function show($id)
     {
         try {
             $history = $this->historyService->find($id);
@@ -78,7 +78,7 @@ class HistoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, History $history)
+    public function update(Request $request, $id)
     {
         try {
             $history = $this->historyService->find($id);
@@ -95,7 +95,7 @@ class HistoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(History $history)
+    public function destroy($id)
     {
         try {
             $history = $this->historyService->find($id);
