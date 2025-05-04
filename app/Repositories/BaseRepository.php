@@ -13,9 +13,9 @@ class BaseRepository implements IBaseRepository{
 
     public function all($pageSize=0){ //nese ka paginate ta kthen me paginate
         if($pageSize){
-            return $this->model->orderBy('id','desc')->paginate($pageSize);
+            return $this->model->orderBy('id','asc')->paginate($pageSize);
         }else{
-            return $this->model->orderBy('id','desc')->get(); //nese ska paginate ta kthen normal
+            return $this->model->orderBy('id','asc')->get(); //nese ska paginate ta kthen normal
         }
     }
      
