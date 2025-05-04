@@ -6,7 +6,7 @@ namespace App\Http\Resources;
 use App\Http\Resources\AbstractJsonResource;
 use Illuminate\Http\Request;
 
-class TestsCollection extends  AbstractJsonResource
+class TestsResource extends  AbstractJsonResource
 {
     public function getModelName()
     {
