@@ -2,17 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\EmptyResource;
+use App\Http\Resources\PaymentCollection;
+use App\Http\Resources\PaymentResource;
 use App\Models\Payment;
+use App\Services\PaymentService;
+use Exception;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    protected PaymentService $paymentService;
+    public function __construct(PaymentService $paymentService)
+    {
+        $this->paymentService = $paymentService;
+    }
+
     public function index()
     {
-        //
+        try {
+            $payment = $this->paymentService->all();
+            if ($payment->isEmpty()) {
+                return $this->okNoRecords();
+            }
+            return $this->okWithCollection(new PaymentCollection($payment));
+        } catch (Exception $e) {
+            return $this->respondError('Something went wrong!' . $e);
+        }
     }
 
     /**
@@ -28,7 +44,12 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $payment = $this->paymentService->save($request);
+            return $this->created(new PaymentResource($payment));
+        } catch (Exception $e) {
+            return $this->respondError('Something went wrong!' . $e);
+        }
     }
 
     /**
@@ -36,7 +57,15 @@ class PaymentController extends Controller
      */
     public function show(Payment $payment)
     {
-        //
+        try {
+            $payment = $this->paymentService->find($id);
+            if ($payment) {
+                return $this->okWithResource(new PaymentResource($payment));
+            }
+            return $this->notFound();
+        } catch (Exception $e) {
+            return $this->respondError('Something went wrong!' . $e);
+        }
     }
 
     /**
@@ -52,7 +81,16 @@ class PaymentController extends Controller
      */
     public function update(Request $request, Payment $payment)
     {
-        //
+        try {
+            $payment = $this->paymentService->find($id);
+            if ($payment) {
+                $payment = $this->paymentService->update($request, $id);
+                return $this->okWithResource(new PaymentResource($payment));
+            }
+            return $this->notFound();
+        } catch (Exception $e) {
+            return $this->respondError('Something went wrong!' . $e);
+        }
     }
 
     /**
@@ -60,6 +98,14 @@ class PaymentController extends Controller
      */
     public function destroy(Payment $payment)
     {
-        //
+        try {
+            $payment = $this->paymentService->find($id);
+            if ($payment) {
+                $this->paymentService->delete($id);
+                return $this->deleted(new EmptyResource($payment));
+            }
+        } catch (Exception $e) {
+            return $this->respondError('Something went wrong!' . $e);
+        }
     }
 }
