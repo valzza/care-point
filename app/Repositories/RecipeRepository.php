@@ -1,7 +1,7 @@
 <?php
 namespace App\Repositories;
 
-use App\Models\Recipe;
+use App\Models\Recipes;
 use App\Repositories\IEloquent\IRecipeRepository;
 
 class RecipeRepository extends BaseRepository implements IRecipeRepository
