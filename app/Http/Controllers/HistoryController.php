@@ -2,17 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\EmptyResource;
+use App\Http\Resources\HistoryCollection;
+use App\Http\Resources\HistoryResource;
+use App\Services\HistoryService;
+use Exception;
 use App\Models\History;
 use Illuminate\Http\Request;
 
 class HistoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    protected HistoryService $historyService;
+    public function __construct(HistoryService $historyService)
+    {
+        $this->historyService = $historyService;
+    }
     public function index()
     {
-        //
+        try {
+            $history = $this->historyService->all();
+            if ($history->isEmpty()) {
+                return $this->okNoRecords();
+            }
+            return $this->okWithCollection(new HistoryCollection($history));
+        } catch (Exception $e) {
+            return $this->respondError('Something went wrong!' . $e);
+        }
     }
 
     /**
@@ -28,7 +43,12 @@ class HistoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $history = $this->historyService->save($request);
+            return $this->created(new HistoryResource($history));
+        } catch (Exception $e) {
+            return $this->respondError('Something went wrong!' . $e);
+        }
     }
 
     /**
@@ -36,7 +56,15 @@ class HistoryController extends Controller
      */
     public function show(History $history)
     {
-        //
+        try {
+            $history = $this->historyService->find($id);
+            if ($history) {
+                return $this->okWithResource(new HistoryResource($history));
+            }
+            return $this->notFound();
+        } catch (Exception $e) {
+            return $this->respondError('Something went wrong!' . $e);
+        }
     }
 
     /**
@@ -52,7 +80,16 @@ class HistoryController extends Controller
      */
     public function update(Request $request, History $history)
     {
-        //
+        try {
+            $history = $this->historyService->find($id);
+            if ($history) {
+                $history = $this->historyService->update($request, $id);
+                return $this->okWithResource(new HistoryResource($history));
+            }
+            return $this->notFound();
+        } catch (Exception $e) {
+            return $this->respondError('Something went wrong!' . $e);
+        }
     }
 
     /**
@@ -60,6 +97,14 @@ class HistoryController extends Controller
      */
     public function destroy(History $history)
     {
-        //
+        try {
+            $history = $this->historyService->find($id);
+            if ($history) {
+                $this->historyService->delete($id);
+                return $this->deleted(new EmptyResource($history));
+            }
+        } catch (Exception $e) {
+            return $this->respondError('Something went wrong!' . $e);
+        }
     }
 }
